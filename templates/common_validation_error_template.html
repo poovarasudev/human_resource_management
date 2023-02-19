@@ -1,0 +1,5 @@
+{% if form.non_field_errors %}
+    <div class="alert alert-danger">
+        <p><span class="fe fe-alert-triangle fe-16 mr-2"></span>{{ form.non_field_errors|striptags }}</p>
+    </div>
+{% endif %}
