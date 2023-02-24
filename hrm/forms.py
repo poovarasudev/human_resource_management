@@ -1,7 +1,7 @@
 from django import forms
 
 
-from .models import Employee
+from .models import Employee, Client
 
 
 class EmployeeForm(forms.ModelForm):
@@ -34,4 +34,25 @@ class EmployeeForm(forms.ModelForm):
             'address': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Address...'}),
             'job_type': forms.Select(attrs={'class': 'form-control select2', 'placeholder': 'Job Type...'}),
             'employee_type': forms.Select(attrs={'class': 'form-control select2', 'placeholder': 'Employee Type...'}),
+        }
+
+
+class ClientForm(forms.ModelForm):
+    mobile_number = forms.CharField(
+        widget=forms.NumberInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Mobile No...',
+            }
+        ),
+        min_length=10,
+        max_length=10,
+    )
+
+    class Meta:
+        model = Client
+        fields = ('name', 'mobile_number', 'address')
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name...'}),
+            'address': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Address...'}),
         }

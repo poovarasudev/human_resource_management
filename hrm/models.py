@@ -31,6 +31,7 @@ class Employee(db.BaseModel):
 
 class Client(db.BaseModel):
     name = models.CharField(max_length=250)
+    mobile_number = models.CharField(max_length=50, unique=True, null=False, blank=False)
     address = models.CharField(max_length=250)
 
     def __str__(self):
