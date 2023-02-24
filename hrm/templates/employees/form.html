@@ -1,0 +1,48 @@
+{% extends 'base/app.html' %}
+{% load custom_tags %}
+
+{% block title %}
+    {{ object|yesno:'Update,Create' }} Employee
+{% endblock %}
+
+{% block content %}
+    <div class="col-12">
+        <h2 class="page-title">{{ object|yesno:'Update,Create' }} Employee</h2>
+
+        {{ form.non_field_errors|show_non_field_errors }}
+
+        <div class="card shadow mb-4">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="card-header">
+                    <strong class="card-title">
+                        {% if object %}
+                            Update {{ object.name }}'s details here
+                        {% else %}
+                            Create an Employee here
+                        {% endif %}
+                    </strong>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        {% for field in form %}
+                            <div class="col-md-6 form-group">
+                                {{ field|show_label }}
+                                {{ field }}
+                                {{ field|show_field_errors }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6"></div>
+                        <div class="col-md-6 form-group mb-3 text-right">
+                            <a href="{% url 'employees' %}" type="submit" class="btn btn-secondary">Cancel</a>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+

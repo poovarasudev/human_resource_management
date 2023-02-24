@@ -94,3 +94,7 @@
     color: #1b68ff !important;
     background-color: #f8f9fa !important;
 }
+
+.mandatory {
+    color: red;
+}

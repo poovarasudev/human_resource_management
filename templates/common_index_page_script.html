@@ -1,0 +1,42 @@
+<script>
+    function commonDelete(url, name) {
+        swal({
+            title: "Are you sure to delete '" + name + "'?",
+            text: "Once deleted, you will not be able to recover",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $(".page-loader").show();
+                    $.ajax({
+                        url: url,
+                        method: 'DELETE',
+                        success: function (response) {
+                            $(".page-loader").hide();
+                            swal({
+                                title: name + " Deleted Successfully!",
+                                text: " ",
+                                icon: "success",
+                                buttons: false,
+                            });
+                            setTimeout(function() {
+                                swal.close();
+                                location.reload();
+                            }, 1500);
+                        },
+                        error: function (response) {
+                            $(".page-loader").hide();
+                            var msg = response.responseJSON.message;
+                            swal({
+                                title: "Warning!",
+                                text: msg,
+                                icon: "warning",
+                            });
+                        },
+                    });
+                }
+            });
+    }
+</script>
