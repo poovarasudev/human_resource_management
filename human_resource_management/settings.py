@@ -38,7 +38,8 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = [
-    'hrm.test'
+    'hrm.test',
+    'hrm-u02s.onrender.com'
 ]
 
 
