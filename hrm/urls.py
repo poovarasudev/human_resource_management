@@ -4,7 +4,7 @@ from . import views
 
 
 urlpatterns = [
-    path('dashboard', views.dashboard, name='dashboard'),
+    path('', views.dashboard, name='dashboard'),
 
     # Employees CRUD
     path('employees', views.EmployeeList.as_view(), name='employees'),
